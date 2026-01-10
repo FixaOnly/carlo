@@ -3,17 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Website Dalam Perbaikan</title>
-    <!-- Font Orbitron untuk gaya Digital/Tech -->
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>FIXA STORE - SYSTEM UPDATE</title>
+    <!-- Font Futuristik -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+    <!-- Icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         :root {
-            --bg-color: #050505;
-            --neon-blue: #00f3ff;
-            --neon-purple: #bc13fe;
-            --glass-bg: rgba(255, 255, 255, 0.03);
-            --glass-border: rgba(255, 255, 255, 0.1);
+            --primary: #00f3ff; /* Neon Cyan */
+            --secondary: #bc13fe; /* Neon Purple */
+            --bg: #050505;
+            --glass: rgba(255, 255, 255, 0.05);
         }
 
         * {
@@ -23,253 +24,378 @@
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--bg-color);
+            background-color: var(--bg);
             color: #fff;
+            font-family: 'Rajdhani', sans-serif;
             height: 100vh;
+            overflow: hidden;
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow: hidden;
             position: relative;
         }
 
-        /* Latar Belakang Grid Bergerak */
-        .bg-grid {
+        /* BACKGROUND PARTICLES */
+        #canvas1 {
             position: absolute;
-            width: 200%;
-            height: 200%;
-            background-image: 
-                linear-gradient(rgba(0, 243, 255, 0.1) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 243, 255, 0.1) 1px, transparent 1px);
-            background-size: 50px 50px;
-            transform: perspective(500px) rotateX(60deg) translateY(-100px) translateZ(-200px);
-            animation: gridMove 20s linear infinite;
-            z-index: -2;
-        }
-
-        @keyframes gridMove {
-            0% { transform: perspective(500px) rotateX(60deg) translateY(0) translateZ(-200px); }
-            100% { transform: perspective(500px) rotateX(60deg) translateY(50px) translateZ(-200px); }
-        }
-
-        /* Cahaya Atmosfer */
-        .glow-overlay {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at center, rgba(188, 19, 254, 0.15) 0%, transparent 70%);
-            z-index: -1;
+            z-index: 1;
+        }
+
+        /* SCANLINE OVERLAY */
+        .scanlines {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.2));
+            background-size: 100% 4px;
+            z-index: 2;
             pointer-events: none;
+            opacity: 0.3;
         }
 
-        /* Container Utama */
+        /* MAIN CARD */
         .container {
-            text-align: center;
-            padding: 2rem;
+            position: relative;
             z-index: 10;
-            animation: fadeIn 1.5s ease-out;
+            text-align: center;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            padding: 60px 40px;
+            border: 1px solid rgba(0, 243, 255, 0.3);
+            border-radius: 20px;
+            box-shadow: 0 0 40px rgba(0, 243, 255, 0.1);
+            max-width: 500px;
+            width: 90%;
+            animation: slideUp 1s ease-out;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.9); }
-            to { opacity: 1; transform: scale(1); }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Status Badge */
+        /* STATUS BADGE */
         .status-badge {
             display: inline-block;
-            padding: 0.5rem 1.5rem;
-            border: 1px solid var(--neon-purple);
+            background: rgba(255, 0, 60, 0.2);
+            color: #ff003c;
+            border: 1px solid #ff003c;
+            padding: 5px 15px;
             border-radius: 50px;
-            color: var(--neon-purple);
             font-size: 0.8rem;
+            font-weight: bold;
             letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 1.5rem;
-            background: rgba(188, 19, 254, 0.1);
-            box-shadow: 0 0 10px rgba(188, 19, 254, 0.3);
+            margin-bottom: 20px;
+            animation: pulse-red 2s infinite;
         }
 
-        h1 {
-            font-size: 3rem;
-            font-weight: 300;
-            margin-bottom: 3rem;
-            letter-spacing: -1px;
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+        @keyframes pulse-red {
+            0% { box-shadow: 0 0 0 0 rgba(255, 0, 60, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(255, 0, 60, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 0, 60, 0); }
         }
 
-        h1 span {
-            font-weight: 700;
-            background: linear-gradient(to right, #fff, #999);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        /* SPINNING ICON */
+        .icon-gear {
+            font-size: 4rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px var(--primary);
+            animation: spin 10s linear infinite;
         }
 
-        /* Timer Styling */
-        .countdown {
-            display: flex;
-            gap: 2rem;
-            justify-content: center;
-            flex-wrap: wrap;
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
-        .time-box {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            position: relative;
-        }
-
-        .number {
+        /* GLITCH TEXT TITLE */
+        .glitch-title {
             font-family: 'Orbitron', sans-serif;
-            font-size: 5rem;
+            font-size: 2.5rem;
             font-weight: 900;
-            color: #fff;
-            text-shadow: 
-                0 0 10px var(--neon-blue),
-                0 0 20px var(--neon-blue),
-                0 0 40px var(--neon-blue);
-            line-height: 1;
-            margin-bottom: 0.5rem;
+            text-transform: uppercase;
             position: relative;
+            color: #fff;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
         }
 
-        /* Efek garis bawah neon */
-        .number::after {
+        .glitch-title::before,
+        .glitch-title::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg);
+        }
+
+        .glitch-title::before {
+            left: 2px;
+            text-shadow: -1px 0 var(--secondary);
+            clip-path: inset(44% 0 61% 0);
+            animation: glitch-anim-1 2s infinite linear alternate-reverse;
+        }
+
+        .glitch-title::after {
+            left: -2px;
+            text-shadow: -1px 0 var(--primary);
+            clip-path: inset(55% 0 10% 0);
+            animation: glitch-anim-2 3s infinite linear alternate-reverse;
+        }
+
+        @keyframes glitch-anim-1 {
+            0% { clip-path: inset(20% 0 80% 0); }
+            20% { clip-path: inset(60% 0 10% 0); }
+            40% { clip-path: inset(40% 0 50% 0); }
+            60% { clip-path: inset(80% 0 5% 0); }
+            80% { clip-path: inset(10% 0 60% 0); }
+            100% { clip-path: inset(30% 0 30% 0); }
+        }
+
+        @keyframes glitch-anim-2 {
+            0% { clip-path: inset(10% 0 60% 0); }
+            20% { clip-path: inset(30% 0 20% 0); }
+            40% { clip-path: inset(70% 0 10% 0); }
+            60% { clip-path: inset(20% 0 50% 0); }
+            80% { clip-path: inset(50% 0 30% 0); }
+            100% { clip-path: inset(5% 0 80% 0); }
+        }
+
+        /* DESCRIPTION */
+        p.desc {
+            font-size: 1.1rem;
+            color: #ccc;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        /* LOADING LINE */
+        .loader-line {
+            width: 100%;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.1);
+            position: relative;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+
+        .loader-line::after {
             content: '';
             position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80%;
-            height: 2px;
-            background: var(--neon-purple);
-            box-shadow: 0 0 10px var(--neon-purple);
-        }
-
-        .label {
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.6);
-            letter-spacing: 3px;
-            text-transform: uppercase;
-        }
-
-        /* Progress Bar di bawah */
-        .progress-container {
-            margin-top: 4rem;
-            width: 100%;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            height: 4px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 2px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .progress-bar {
+            top: 0;
+            left: 0;
             height: 100%;
-            background: linear-gradient(90deg, var(--neon-purple), var(--neon-blue));
-            width: 0%;
-            animation: loadProgress 5s ease-in-out infinite alternate;
-            box-shadow: 0 0 10px var(--neon-blue);
+            width: 50%;
+            background: var(--primary);
+            animation: load 1.5s infinite ease-in-out;
+            box-shadow: 0 0 10px var(--primary);
         }
 
-        @keyframes loadProgress {
-            0% { width: 0%; }
-            100% { width: 70%; }
+        @keyframes load {
+            0% { left: -50%; width: 30%; }
+            50% { left: 20%; width: 80%; }
+            100% { left: 100%; width: 30%; }
         }
 
-        /* Responsiveness */
-        @media (max-width: 768px) {
-            h1 { font-size: 2rem; margin-bottom: 2rem; }
-            .countdown { gap: 1rem; }
-            .number { font-size: 3rem; }
-            .label { font-size: 0.7rem; }
-            .status-badge { font-size: 0.7rem; padding: 0.4rem 1rem; }
+        /* SOCIAL BUTTONS */
+        .socials {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .btn-social {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-social:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            color: var(--bg);
+            background: var(--primary);
+            box-shadow: 0 0 20px var(--primary);
+        }
+        
+        .btn-social.wa:hover { background: #25D366; border-color: #25D366; box-shadow: 0 0 20px #25D366; }
+        .btn-social.ig:hover { background: #E1306C; border-color: #E1306C; box-shadow: 0 0 20px #E1306C; }
+        .btn-social.tg:hover { background: #0088cc; border-color: #0088cc; box-shadow: 0 0 20px #0088cc; }
+
+        /* FOOTER */
+        .footer {
+            margin-top: 20px;
+            font-size: 0.8rem;
+            color: #555;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 600px) {
+            .glitch-title { font-size: 1.8rem; }
+            .container { padding: 40px 20px; }
         }
     </style>
 </head>
 <body>
 
-    <div class="bg-grid"></div>
-    <div class="glow-overlay"></div>
+    <!-- Background Canvas Animation -->
+    <canvas id="canvas1"></canvas>
+    
+    <!-- Scanlines Overlay -->
+    <div class="scanlines"></div>
 
-    <main class="container">
-        <div class="status-badge">
-            <i class="fas fa-circle-notch fa-spin"></i> System Maintenance
+    <div class="container">
+        <div class="status-badge">SYSTEM OFFLINE</div>
+        
+        <div class="icon-gear">
+            <i class="fas fa-cogs"></i>
         </div>
 
-        <h1>Website <span>Sedang Diperbarui</span></h1>
+        <div class="glitch-title" data-text="MAINTENANCE">MAINTENANCE</div>
+        
+        <p class="desc">
+            Website sedang dalam proses pembaruan sistem.<br>
+            Kami akan segera kembali dengan performa yang lebih baik.
+        </p>
 
-        <div class="countdown" id="countdown">
-            <div class="time-box">
-                <span class="number" id="days">00</span>
-                <span class="label">Hari</span>
-            </div>
-            <div class="time-box">
-                <span class="number">:</span>
-            </div>
-            <div class="time-box">
-                <span class="number" id="hours">00</span>
-                <span class="label">Jam</span>
-            </div>
-            <div class="time-box">
-                <span class="number">:</span>
-            </div>
-            <div class="time-box">
-                <span class="number" id="minutes">00</span>
-                <span class="label">Menit</span>
-            </div>
-            <div class="time-box">
-                <span class="number">:</span>
-            </div>
-            <div class="time-box">
-                <span class="number" id="seconds">00</span>
-                <span class="label">Detik</span>
-            </div>
+        <!-- Animasi Loading Bar -->
+        <div class="loader-line"></div>
+
+        <div class="socials">
+            <a href="https://wa.me/6281543156112" class="btn-social wa" target="_blank" title="WhatsApp">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+            <a href="https://www.instagram.com/FixaXiterz" class="btn-social ig" target="_blank" title="Instagram">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://t.me/FixaOnly" class="btn-social tg" target="_blank" title="Telegram">
+                <i class="fab fa-telegram"></i>
+            </a>
         </div>
 
-        <!-- Elemen dekoratif loading bar -->
-        <div class="progress-container">
-            <div class="progress-bar"></div>
+        <div class="footer">
+            &copy; 2025 FIXA STORE. All Rights Reserved.
         </div>
-    </main>
+    </div>
 
     <script>
-        // Set waktu target (misal 3 hari dari sekarang)
-        const targetDate = new Date();
-        targetDate.setDate(targetDate.getDate() + 3); 
+        // --- PARTICLE NETWORK ANIMATION ---
+        const canvas = document.getElementById('canvas1');
+        const ctx = canvas.getContext('2d');
+        
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
 
-        function updateTimer() {
-            const now = new Date().getTime();
-            const distance = targetDate - now;
+        let particlesArray;
 
-            if (distance < 0) {
-                document.querySelector("h1").innerHTML = "Website <span>Kembali Online</span>";
-                document.getElementById("countdown").style.display = "none";
-                return;
+        // Handle Resize
+        window.addEventListener('resize', function() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            init();
+        });
+
+        class Particle {
+            constructor(x, y, directionX, directionY, size, color) {
+                this.x = x;
+                this.y = y;
+                this.directionX = directionX;
+                this.directionY = directionY;
+                this.size = size;
+                this.color = color;
             }
-
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            // Update teks
-            document.getElementById("days").innerText = days < 10 ? "0" + days : days;
-            document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
-            document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
-            document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+            }
+            update() {
+                // Bounce off edges
+                if (this.x > canvas.width || this.x < 0) {
+                    this.directionX = -this.directionX;
+                }
+                if (this.y > canvas.height || this.y < 0) {
+                    this.directionY = -this.directionY;
+                }
+                this.x += this.directionX;
+                this.y += this.directionY;
+                this.draw();
+            }
         }
 
-        setInterval(updateTimer, 1000);
-        updateTimer();
+        function init() {
+            particlesArray = [];
+            // Calculate number of particles based on screen size
+            let numberOfParticles = (canvas.height * canvas.width) / 9000;
+            
+            for (let i = 0; i < numberOfParticles; i++) {
+                let size = (Math.random() * 2) + 1;
+                let x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2);
+                let y = (Math.random() * ((innerHeight - size * 2) - (size * 2)) + size * 2);
+                let directionX = (Math.random() * 1) - 0.5; // Speed X
+                let directionY = (Math.random() * 1) - 0.5; // Speed Y
+                let color = '#00f3ff'; // Cyan
+
+                particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
+            }
+        }
+
+        // Draw lines between particles that are close
+        function connect() {
+            let opacityValue = 1;
+            for (let a = 0; a < particlesArray.length; a++) {
+                for (let b = a; b < particlesArray.length; b++) {
+                    let distance = ((particlesArray[a].x - particlesArray[b].x) * (particlesArray[a].x - particlesArray[b].x)) + 
+                                   ((particlesArray[a].y - particlesArray[b].y) * (particlesArray[a].y - particlesArray[b].y));
+                    
+                    if (distance < (canvas.width/7) * (canvas.height/7)) {
+                        opacityValue = 1 - (distance/20000);
+                        ctx.strokeStyle = 'rgba(0, 243, 255,' + opacityValue + ')'; // Cyan lines
+                        ctx.lineWidth = 1;
+                        ctx.beginPath();
+                        ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
+                        ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            ctx.clearRect(0, 0, innerWidth, innerHeight);
+
+            for (let i = 0; i < particlesArray.length; i++) {
+                particlesArray[i].update();
+            }
+            connect();
+        }
+
+        init();
+        animate();
     </script>
 </body>
 </html>
